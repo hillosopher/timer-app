@@ -1,12 +1,12 @@
-var time = 0;
-var running = 0;
-var interval = null;
-var timerInput = document.getElementById("timerInput");
+let time = 0;
+let running = 0;
+let interval = null;
+const timerInput = document.getElementById("timerInput");
 
 function startStop() {
-  if (running == 0) {
+  if (running === 0) {
     running = 1;
-    var timeArr = timerInput.value.split(":"); // split minutes and seconds
+    const timeArr = timerInput.value.split(":"); // split minutes and seconds
     time = parseInt(timeArr[0]) * 60 + parseInt(timeArr[1]);
     timerInput.readOnly = true; // make the input field read-only
     interval = setInterval(function () {
@@ -16,7 +16,7 @@ function startStop() {
         timerInput.readOnly = false; // make the input field editable again
         document.getElementById("startStopBtn").innerText = "Start";
         alert("Time is up!");
-        var audio = new Audio("timer.mp3");
+        const audio = new Audio("timer.mp3");
 
         audio.addEventListener(
           "canplaythrough",
@@ -30,8 +30,8 @@ function startStop() {
         audio.play();
       } else {
         time--;
-        var mins = Math.floor(time / 60);
-        var secs = time % 60;
+        const mins = Math.floor(time / 60);
+        const secs = time % 60;
         timerInput.value =
           (mins < 10 ? "0" : "") + mins + ":" + (secs < 10 ? "0" : "") + secs;
       }
